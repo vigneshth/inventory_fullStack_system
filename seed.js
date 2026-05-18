@@ -3,9 +3,7 @@ import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const MONGO_URI =
-  process.env.MONGO_URI ||
-  'mongodb://inventrack:inventrack123@ac-u9xeoin-shard-00-00.y9xzhke.mongodb.net:27017,ac-u9xeoin-shard-00-01.y9xzhke.mongodb.net:27017,ac-u9xeoin-shard-00-02.y9xzhke.mongodb.net:27017/?ssl=true&replicaSet=atlas-5anubb-shard-0&authSource=admin&appName=ClusterFSWD';
+const MONGO_URI = process.env.MONGO_URI;
 const userSchema = new mongoose.Schema(
   {
     name: String,
