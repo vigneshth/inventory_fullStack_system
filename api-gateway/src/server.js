@@ -137,15 +137,9 @@ app.get('/health', (req, res) => {
 
 // ── AUTH ROUTES ──────────────────────────────────────────────────────────────
 // Protected auth routes (users management)
-app.all('/api/auth/users*', authenticate, requireRoles('admin'), (req, res) => {
-  const path = req.path.replace('/api/auth', '');
-  forwardRequest(req, res, `${process.env.AUTH_SERVICE_URL}/api/auth${path}`);
-});
-
-// Public auth routes (login, register)
-app.all('/api/auth/*', authLimiter, (req, res) => {
-  const path = req.path.replace('/api/auth', '');
-  forwardRequest(req, res, `${process.env.AUTH_SERVICE_URL}/api/auth${path}`);
+app.use('/api/auth', (req, res) => {
+  const targetUrl = `${process.env.AUTH_SERVICE_URL}${req.originalUrl}`;
+  forwardRequest(req, res, targetUrl);
 });
 
 // ── PRODUCT ROUTES (protected) ────────────────────────────────────────────────
