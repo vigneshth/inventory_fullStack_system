@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://api-gateway-r6zm.onrender.com/api',
+  baseURL: 'https://inventrack-gateway.onrender.com/api',
   timeout: 15000,
   headers: { 'Content-Type': 'application/json' }
 });
