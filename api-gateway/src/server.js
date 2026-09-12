@@ -143,7 +143,7 @@ app.all('/api/auth/users*', authenticate, requireRoles('admin'), (req, res) => {
 });
 
 // Public auth routes (login, register)
-app.all('/api/auth/*', authLimiter, (req, res) => {
+app.all('/api/auth/*', (req, res) => {
   const path = req.path.replace('/api/auth', '');
   forwardRequest(req, res, `${process.env.AUTH_SERVICE_URL}/api/auth${path}`);
 });
