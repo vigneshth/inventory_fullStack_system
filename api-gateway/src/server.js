@@ -16,7 +16,7 @@ const BODY_LIMIT = '5mb';
 // Security middleware
 app.use(helmet());
 app.use(cors({
-  origin: '*',
+  origin: ['http://localhost:5173', 'http://localhost:3000','https://frontend-inventrack.onrender.com'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-user-id', 'x-user-role', 'x-user-email']
@@ -36,7 +36,7 @@ const globalLimiter = rateLimit({
 // Auth rate limiter (stricter)
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 5,
+  max: 100,
   message: { error: 'Too many auth attempts, please try again later.' }
 });
 
